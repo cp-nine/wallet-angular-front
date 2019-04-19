@@ -1,0 +1,16 @@
+/* --- background --- */
+.bg-red {
+    background-color: rgb(229, 71, 71);
+}
+
+.bg-blue {
+    background-color: rgb(49, 158, 247);
+}
+
+.bg-green {
+    background-color: rgb(48, 219, 162);
+}
+
+.bg-yellow {
+    background-color: rgb(245, 255, 61);
+}

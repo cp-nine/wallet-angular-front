@@ -1,0 +1,83 @@
+<div class="row account-list">
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="img-profile">
+                    <img src="assets/images/lufy.jpg" alt="User Profile">
+                </div>
+                <div class="detail-profile">
+                    <hr>
+                    <h5>Ikhsan Fauji</h5>
+                    <p class="italic">Software Engineer</p>
+                    <hr>
+                    <p>Cilacap, 11 March 1996</p>
+                    <p>ikhsan.codepool@gmail.com</p>
+                    <p>095726364123</p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-9">
+        <div class="card">
+            <div class="card-body" *ngIf="!isEdit">
+                <h5>Data Profile &nbsp;
+                    <span>
+                        <a href="javascript:void(0)" (click)="editPage()" data-toggle="tooltip" data-placement="right" title="Edit Profile"><i class="fas fa-edit"></i></a>
+                    </span>
+                </h5>
+                <hr>
+
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th scope="row" width="150px">Name</th>
+                            <td>Ikhsan Fauji</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Gender</th>
+                            <td>Male</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Place Of Birth</th>
+                            <td>Cilacap</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Birth Of Date</th>
+                            <td>11 March 1996</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Email</th>
+                            <td>ikhsan.codepool@gmail.com</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Phone Number</th>
+                            <td>095726364123</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Address</th>
+                            <td>Rt 04/Rw 03 Dusun Api-Api, Desa Kedungbenda, Kecamatan Nusawungu, Kabupaten
+                                Cilacap</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Province</th>
+                            <td>Central Java</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Job</th>
+                            <td>Software Engineer</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Range Salary</th>
+                            <td>7 Jt - 15 Jt</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- edit -->
+            <app-editcustprofile (emiterEdit)="editPage($event)" *ngIf="isEdit"></app-editcustprofile>
+        </div>
+    </div>
+</div>

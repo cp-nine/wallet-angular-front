@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'front-end';
+  title = 'Mini Bank';
+
+  arrUrl = []; 
+  currentUrl: string; 
+
+  constructor(){
+    this.arrUrl = location.href.split('/');
+    this.currentUrl = this.arrUrl[3];
+  }
 }

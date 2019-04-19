@@ -1,0 +1,33 @@
+.option ul {
+  list-style: none;
+}
+
+.option ul li {
+  float: left;
+}
+
+.option ul li a {
+  padding: 5px 5px;
+  display: block;
+  text-decoration: none;
+}
+
+.option ul li:last-child {
+  margin-left: 10px;
+}
+
+.dropdown .notif {
+  position: absolute;
+  top: 0;
+  /* margin-top: 15px;
+  margin-left: 11px; */
+}
+
+.dropdown-notif {
+  margin-top: 15px;
+  width: 80px;
+}
+
+.dropdown-toggle:after {
+  content: none
+}

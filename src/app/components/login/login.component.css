@@ -1,0 +1,39 @@
+.content {
+    margin-left: 0; 
+}
+/* lohgin */
+.login-form {
+    margin-top: 100px;
+}
+
+.form-body {
+    padding: 0;
+    box-shadow: 2px 3px 5px 0px #888888;
+}
+
+.form-body .left-block {
+    color: #ffffff;
+    padding: 25px;
+    padding-top: 80px;
+    text-align: center;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.left-block h3 {  
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.form-body .right-block {
+    color: #3f4444;
+    padding: 30px;
+    padding-top: 80px;
+    padding-bottom: 50px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.right-block i {
+    color: #888888;
+}
