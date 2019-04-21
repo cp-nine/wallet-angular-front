@@ -1,25 +1,22 @@
  <!-- sidebar -->
  <div class="sidebar">
 
-  <nav class="nav flex-column">
-    <ul>
-      <li class="nav-item nav-dashboard active">
-        <a class="nav-link" routerLink="/"><i class="fas fa-tachometer-alt"></i>&nbsp; Dashboard</a>
+   <nav class="nav flex-column">
+     <ul>
+       <li class="nav-profile">
+         <img class="nav-profile-img" src="assets/images/lufy.jpg" alt="profile">
+       </li>
+       <li class="side-profile">
+         <a class="name" href="/profile">
+          Monkey D Lufy
+          <p class="cash-tag">$ d.lufy</p>
+          </a>
+         <p style="margin-bottom:5px;">{{400000 | currency:'Rp. '}}</p>
       </li>
-      <li class="nav-title">MAIN MENU</li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/profile"><i class="fas fa-user"></i>&nbsp; Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/account-list"><i class="fas fa-list"></i>&nbsp; Account List</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/transactions-report"><i class="fas fa-money-check-alt"></i>&nbsp; Transaction Report</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" routerLink="/e-wallets"><i class="fas fa-wallet"></i>&nbsp; E-Wallets</a>
-
-        </li>
-    </ul>
-  </nav>
-</div>
+       <li class="nav-item" routerLinkActive="active" 
+          *ngFor="let menu of mainMenu">
+         <a class="nav-link" routerLink="{{menu.link}}"><i class="fas {{menu.icon}}"></i>&nbsp; {{menu.name}}</a>
+       </li>
+     </ul>
+   </nav>
+ </div>

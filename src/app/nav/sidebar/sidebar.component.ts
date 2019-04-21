@@ -8,14 +8,33 @@ import * as $ from 'jquery';
 })
 export class SidebarComponent implements OnInit {
 
+  mainMenu = [
+    {
+      name: "Dashboard",
+      link: "/dashboard",
+      icon: "fa-tachometer-alt"
+    },
+    {
+      name: "Actifity",
+      link: "/activity",
+      icon: "fa-chart-line"
+    },
+    {
+      name: "Transaction",
+      link: "/transaction",
+      icon: "fa-wallet"
+    },
+    {
+      name: "Payment Report",
+      link: "/payment-report",
+      icon: "fa-money-bill-alt"
+    }
+    
+  ];
+
   constructor() { }
 
   ngOnInit() {
-    $(".nav-item").on("click", function() {
-        $(".nav-item").removeClass("active");
-        $(this).addClass("active");
-    });
-
     // --- togle sidebar -------
     $('#btn-toggler').on('click', function () {
       if($(this).hasClass('btnhide')){
