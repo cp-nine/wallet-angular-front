@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as $ from 'jquery';
+import { Wallet } from 'src/app/models/wallet';
+import { WalletService } from 'src/app/services/wallet/wallet.service';
+import { MENUDUA } from 'src/app/models/menu-dua';
+import { MENUSATU } from 'src/app/models/menu-satu';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,33 +12,43 @@ import * as $ from 'jquery';
 })
 export class SidebarComponent implements OnInit {
 
-  mainMenu = [
-    {
-      name: "Dashboard",
-      link: "/dashboard",
-      icon: "fa-tachometer-alt"
-    },
-    {
-      name: "Actifity",
-      link: "/activity",
-      icon: "fa-chart-line"
-    },
-    {
-      name: "Transaction",
-      link: "/transaction",
-      icon: "fa-wallet"
-    },
-    {
-      name: "Payment Report",
-      link: "/payment-report",
-      icon: "fa-money-bill-alt"
-    }
-    
-  ];
+  wallet: Wallet = new Wallet();
 
-  constructor() { }
+  @Input()
+  isEdit:boolean = false;
+
+  message: string;
+
+  mainMenu;
+
+  constructor(
+    private service: WalletService
+  ) { }
+
+  getProfile(){
+    this.service.getProfile().subscribe(
+      response => {
+        if (response.status !== "20") {
+          this.message = response.message;
+        } else {
+          this.wallet = response.data; 
+
+          if (response.data.type === "E-Merchant") {
+            this.mainMenu = MENUDUA;
+          } else {
+            this.mainMenu = MENUSATU;
+          }
+        }
+      }
+    );
+  }
+
+  get actibeBallance(){
+    return this.wallet.activeBallance;
+  }
 
   ngOnInit() {
+    this.getProfile();
     // --- togle sidebar -------
     $('#btn-toggler').on('click', function () {
       if($(this).hasClass('btnhide')){

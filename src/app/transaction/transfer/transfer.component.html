@@ -1,28 +1,31 @@
 <h5>Transfer</h5>
 <hr>
 
-<div class="row">
-  <div class="col-sm-12">
-
-    <div class="form-group">
-        <input type="checkbox" id="type" (change)="toAccount()"> &nbsp;
-        <label for="type">To Other Account Number</label>
-    </div>
-    <div class="form-group" *ngIf="!isAccount">
-        <label for="tag">Cash Tag</label>
-        <input type="text" class="form-control" id="tag" placeholder="Cash Tag">
-    </div>
-    <div class="form-group" *ngIf="isAccount">
-        <label for="account">Account Number</label>
-        <input type="text" class="form-control" id="account" placeholder="Account Number">
-    </div>
-    <div class="form-group">
-        <label for="amount">Transfer Nominal</label>
-        <input type="text" class="form-control" id="amout" placeholder="Nominal">
-    </div>
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Send">
-    </div>
-    
+<ul class="nav nav-tabs" id="transferTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+      aria-selected="true">Transfer</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+      aria-selected="false">To Other Account</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile"
+      aria-selected="false">From Account</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <br>
+    <app-transfer-wtw></app-transfer-wtw>
+  </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <br>
+    <app-transfer-wta></app-transfer-wta>
+  </div>
+  <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile2-tab">
+    <br>
+    <app-main-transfer></app-main-transfer>
   </div>
 </div>

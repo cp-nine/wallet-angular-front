@@ -7,12 +7,12 @@
         </div>
         <div class="detail-profile">
           <hr>
-          <h5>Ikhsan Fauji</h5>
-          <p class="italic">$ ikhsanfauji</p>
+          <h5>{{wallet.fullName}}</h5>
+          <p class="italic">$ {{wallet.cashTag}}</p>
           <hr>
-          <p>Cilacap, 11 March 1996</p>
-          <p>ikhsan.codepool@gmail.com</p>
-          <p>095726364123</p>
+          <p>{{wallet.placeOb}}, {{wallet.birthDate}}</p>
+          <p>{{wallet.email}}</p>
+          <p>{{wallet.phoneNumber}}</p>
           <hr>
         </div>
       </div>
@@ -34,19 +34,19 @@
           <tbody>
             <tr>
               <th scope="row" width="150px">Wallet Name</th>
-              <td>Tabungan Nikah</td>
+              <td>{{wallet.walletName}}</td>
             </tr>
             <tr>
               <th scope="row" width="150px">Cash Tag</th>
-              <td>$ ikhsanfauji</td>
+              <td>$ {{wallet.cashTag}}</td>
             </tr>
             <tr>
               <th scope="row">Type</th>
-              <td>E - Banking</td>
+              <td>{{wallet.type}}</td>
             </tr>
             <tr>
               <th scope="row">Active Ballance</th>
-              <td>{{400000 | currency:'Rp. '}}</td>
+              <td>{{wallet.activeBallance | currency:'Rp. '}}</td>
             </tr>
             <tr>
               <th scope="row">Accounts</th>
@@ -58,7 +58,7 @@
             </tr>
             <tr>
               <th scope="row">Open Date</th>
-              <td>11 April 2019</td>
+              <td>{{wallet.createAt | date: 'longDate'}}</td>
             </tr>
           </tbody>
         </table>

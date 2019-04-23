@@ -1,21 +1,24 @@
 <h5>Cash Withdrawal</h5>
 <hr>
 
-<div class="row">
-  <div class="col-sm-12">
-
-    <div class="form-group">
-        <div class="alert alert-info text-center">
-          Cash Minimum {{50000 | currency:'Rp. '}}
-        </div>
+<ul class="nav nav-tabs" id="transferTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+        aria-selected="true">From Wallet</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+        aria-selected="false">From Account</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <br>
+      <app-main-cash></app-main-cash>
     </div>
-    <div class="form-group">
-        <label for="amount">Cash Nominal</label>
-        <input type="text" class="form-control" id="amout" placeholder="Nominal">
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <br>
+      <app-cash-account></app-cash-account>
     </div>
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Send">
-    </div>
-    
   </div>
-</div>
+

@@ -1,0 +1,7 @@
+#transferTab li a {
+    color: rgb(41, 41, 41);
+}
+
+#transferTab li .active {
+    color: rgb(0, 86, 156);
+}

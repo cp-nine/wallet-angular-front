@@ -7,11 +7,11 @@
          <img class="nav-profile-img" src="assets/images/lufy.jpg" alt="profile">
        </li>
        <li class="side-profile">
-         <a class="name" href="/profile">
-          Monkey D Lufy
-          <p class="cash-tag">$ d.lufy</p>
+         <a class="name" routerLink="/profile">
+          {{wallet.fullName}}
+          <p class="cash-tag">$ {{wallet.cashTag}}</p>
           </a>
-         <p style="margin-bottom:5px;">{{400000 | currency:'Rp. '}}</p>
+         <p style="margin-bottom:5px;" *ngIf="wallet.activeBallance">{{wallet.activeBallance | currency:'Rp. '}}</p>
       </li>
        <li class="nav-item" routerLinkActive="active" 
           *ngFor="let menu of mainMenu">

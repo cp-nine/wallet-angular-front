@@ -9,13 +9,26 @@
                 <p>Your Financial Partner</p>
               </div>
               <div class="col-sm-7 bg-white right-block">
-                <form>
+
+                <div class="alert alert-danger text-center" *ngIf="loginFailed">
+                  <p style="margin-bottom:0;">Username or Password not valid!!!</p>
+                </div>
+
+                <form [formGroup]="loginForm" (ngSubmit)="loginProcess()">
+
                   <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">
-                      <i class="fas fa-user fa-2x"></i>
+                    <label for="email" class="col-sm-2 col-form-label">
+                      <i class="fas fa-envelope fa-2x"></i>
                     </label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                      <input type="email" formControlName="email" class="form-control" id="email"
+                        placeholder="example@local.com" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                      </div>
+                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                          <div *ngIf="f.email.errors.email">Email not valid</div>
+                        </div>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -23,7 +36,11 @@
                       <i class="fas fa-lock fa-2x"></i>
                     </label>
                     <div class="col-sm-10">
-                      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                      <input type="password" formControlName="password" class="form-control" id="inputPassword3"
+                        placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -36,10 +53,10 @@
                       </label>
                     </div>
                     <div class="col-sm-4">
-                      <a href="/dashboard" class="btn btn-primary  btn-block">Login</a>
-                      <!-- <button type="submit" class="btn btn-primary  btn-block">Login</button> -->
+                      <button type="submit" class="btn btn-primary  btn-block" [disabled]="loginForm.invalid">Login</button>
                     </div>
                   </div>
+
                 </form>
               </div>
             </div>

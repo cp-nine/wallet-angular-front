@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { WalletService } from 'src/app/services/wallet/wallet.service';
+import { TransactionService } from 'src/app/services/transaction/transaction.service';
+import { Account } from 'src/app/models/account';
+import { Wallet } from 'src/app/models/wallet';
 
 @Component({
   selector: 'app-wallettransaction',
@@ -12,9 +16,54 @@ export class WallettransactionComponent implements OnInit {
   withdrawalPage:boolean=false;
   paymentPage:boolean=false;
 
-  constructor() { }
+  accounts: Account[] = [];
+  wallet: Wallet = new Wallet();
+  message: string = '';
+  totalBallance: number = 0;
+
+  isEbanking: boolean = false;
+
+  constructor(
+    private service: WalletService,
+    private service2: TransactionService
+  ) { }
 
   ngOnInit() {
+    this.accountNumber();
+    this.getActiveBallance();
+  }
+
+  getActiveBallance(){
+    this.service.getProfile().subscribe(
+      resp => {
+        if (resp.status !== "20") {
+          this.message = resp.message;
+        } else {
+          this.wallet = resp.data;
+
+          if (resp.data.type === "E-Banking") {
+            this.isEbanking = true;
+          } else {
+            this.isEbanking = true;
+          }
+        }
+      }
+    );
+  }
+
+  accountNumber(){
+    this.service2.getWalletAccount().subscribe(
+      resp => {
+        if (resp.status !== "20") {
+          this.message = resp.message;
+        } else {
+          resp.data.forEach(d => {
+            this.accounts.push(d.account);
+            this.totalBallance = this.totalBallance + d.account.ballance; 
+          });  
+        }
+      }
+    );
   }
 
   topup(){
@@ -50,6 +99,10 @@ export class WallettransactionComponent implements OnInit {
     this.topupPage = false;
     
     this.paymentPage = !this.paymentPage;
+  }
+
+  transEmit(){
+    this.transferPage = !this.transferPage;
   }
 
 }

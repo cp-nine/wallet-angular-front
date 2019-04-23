@@ -1,28 +1,23 @@
 <h5>Top up</h5>
 <hr>
 
-<div class="row">
-  <div class="col-sm-12">
-
-    <div class="form-group">
-        <input type="checkbox" id="type" (change)="byAccount()"> &nbsp;
-        <label for="type">Top Up By Account</label>
-    </div>
-
-    <div class="form-group" *ngIf="isAccount">
-        <label for="account">Select Account</label>
-        <select name="accountNumber" id="account" class="form-control">
-          <option value="">0823626323</option>
-          <option value="">023827653</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="amount">Top Up Nominal</label>
-        <input type="text" class="form-control" id="amout" placeholder="Nominal">
-    </div>
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Ok">
-    </div>
-    
+<ul class="nav nav-tabs" id="topupTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+      aria-selected="true">Tup Up</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+      aria-selected="false">Top Up By Account</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <br>
+    <app-maintopup></app-maintopup>
+  </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <br>
+    <app-topup-byaccount></app-topup-byaccount>
   </div>
 </div>

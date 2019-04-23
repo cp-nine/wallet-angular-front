@@ -8,7 +8,7 @@
           <div class="card-body">
             <div class="card-right">
               <h5><b>Active Ballance</b></h5>
-              <h4><b>{{4000000 | currency:'Rp. '}}</b></h4>
+              <h4><b>{{wallet.activeBallance | currency:'Rp. '}}</b></h4>
             </div>
           </div>
         </div>
@@ -23,7 +23,7 @@
               <h5>Transactions</h5>
             </div>
             <div class="card-right">
-              <h1>11</h1>
+              <h1>{{totalTransaction}}</h1>
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@
               <h5>Accounts</h5>
             </div>
             <div class="card-right">
-              <h1>5</h1>
+              <h1>{{totalAccount}}</h1>
             </div>
           </div>
         </div>
@@ -63,24 +63,14 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Ikhsan Fauji</td>
-                      <td>86822096201</td>
-                      <td>Rp.10.000.000,00</td>
-                    </tr>
-                    <tr>
-                      <td>Ikhsan Fauji</td>
-                      <td>86822096202</td>
-                      <td>Rp.20.000.000,00</td>
-                    </tr>
-                    <tr>
-                      <td>Ikhsan Fauji</td>
-                      <td>86822096203</td>
-                      <td>Rp.30.000.000,00</td>
+                    <tr *ngFor="let ac of accounts">
+                      <td>{{ac.accountName}}</td>
+                      <td>{{ac.accountNumber}}</td>
+                      <td>{{ac.ballance | currency: 'Rp. '}}</td>
                     </tr>
                     <tr>
                       <th colspan="2">Total Ballance</th>
-                      <th><h5><b>Rp.60.000.000,00</b></h5></th>
+                      <th><h5><b>{{totalBallance | currency: 'Rp. '}}</b></h5></th>
                     </tr>
                   </tbody>
                 </table>

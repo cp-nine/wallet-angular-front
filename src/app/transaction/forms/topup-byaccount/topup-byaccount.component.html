@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-sm-12">
+  
+      <div class="alert alert-info" *ngIf="message !== ''">
+        <p style="margin-bottom:0;">{{message}}</p>
+      </div>
+  
+      <form [formGroup]="topUpForm" (ngSubmit)="topUp()">
+  
+        <div class="form-group">
+          <label for="account">Select Account</label>
+          <select formControlName="accountNumber" id="account" class="form-control">
+            <option value="">Select Account</option>
+            <option *ngFor="let ac of accounts" value="{{ac.accountNumber}}">{{ac.accountNumber}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="amount">Top Up Nominal</label>
+          <input type="text" formControlName="amount" class="form-control" id="amout" placeholder="Nominal">
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary" value="Ok">
+        </div>
+  
+      </form>
+  
+    </div>
+  </div>
