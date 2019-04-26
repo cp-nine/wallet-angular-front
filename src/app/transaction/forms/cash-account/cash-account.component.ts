@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Account } from 'src/app/models/account';
 import { TrxEntity } from 'src/app/models/trx-entity';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -15,6 +15,9 @@ export class CashAccountComponent implements OnInit {
   message: string = '';
 
   accounts: Account[] = [];
+
+  @Output()
+  emmiter = new EventEmitter();
 
   // process
   waForm: FormGroup;
@@ -56,7 +59,6 @@ export class CashAccountComponent implements OnInit {
   withdrawal(){
     this.submitted = true;
 
-
     if (this.f.amount.value < 50000) {
       this.message = "Cash minimum Rp.50,000.00";
     } else {
@@ -72,12 +74,20 @@ export class CashAccountComponent implements OnInit {
     this.service.cashAccount(trx).subscribe(
       resp => {
         if (resp.status !== "20") {
-          this.message = "Cash withdrawal failed";
+          this.message = resp.message;
+          this.emmit();
         } else {
           this.message = "Cash withdrawal success";
+          this.emmit();
         }
       }
     );
+  }
+
+  emmit(){
+    setTimeout(() => {
+      this.emmiter.emit();
+    }, 1000);
   }
 
 }

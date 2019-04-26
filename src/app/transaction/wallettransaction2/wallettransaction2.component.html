@@ -10,8 +10,7 @@
               <button (click)="withdrawal()" class="btn btn-primary">Withdrawal</button>&nbsp;
               <button *ngIf="!isEbanking" (click)="payment()" class="btn btn-primary">Payment</button>
               <hr>
-              <h5 *ngIf="!isEbanking">Active Ballance : {{wallet.activeBallance | currency:'Rp. '}}</h5>
-              <h5 *ngIf="isEbanking">Active Ballance : {{totalBallance | currency:'Rp. '}}</h5>
+              <h5>Active Ballance : {{wallet.activeBallance | currency:'Rp. '}}</h5>
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -41,20 +40,16 @@
                   </div>
 
                 <div *ngIf="topupPage">
-                  <app-topup (topupEmmiter)="reset($event)" [isBanking]="isEbanking"></app-topup>
+                  <app-topup></app-topup>
                 </div>
-                <!-- <div *ngIf="topupPage && isEbanking">
-                  <app-topup2></app-topup2>
-                </div> -->
-
                 <div *ngIf="transferPage">
-                  <app-transfer (transferEmiter)="reset($event)" [isBanking]="isEbanking"></app-transfer>
+                  <app-transfer (transferEmiter)="wtEmmit($event)"></app-transfer>
                 </div>
                 <div *ngIf="withdrawalPage">
-                  <app-withdrawal (emmiter)="reset($event)" [isBanking]="isEbanking"></app-withdrawal>
+                  <app-withdrawal></app-withdrawal>
                 </div>
                 <div *ngIf="paymentPage">
-                  <app-payment (emmiter)="reset($event)"></app-payment>
+                  <app-payment></app-payment>
                 </div>
               
             </div>

@@ -17,6 +17,7 @@ import { EditcustprofileComponent } from './components/forms/editcustprofile/edi
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PaymentreportComponent } from './components/paymentreport/paymentreport.component';
 import { ModaladdaccountComponent } from './forms/modaladdaccount/modaladdaccount.component';
+import { UpdatePasswordComponent } from './components/forms/update-password/update-password.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ModaladdaccountComponent } from './forms/modaladdaccount/modaladdaccoun
     EditcustprofileComponent,
     DashboardComponent,
     PaymentreportComponent,
-    ModaladdaccountComponent
+    ModaladdaccountComponent,
+    UpdatePasswordComponent
   ],
   imports: [
     BrowserModule,

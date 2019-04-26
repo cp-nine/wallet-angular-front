@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Account } from 'src/app/models/account';
 import { TrxEntity } from 'src/app/models/trx-entity';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -15,88 +15,89 @@ export class TransferComponent implements OnInit {
 
   @Output()
   transferEmiter = new EventEmitter();
+  @Input()
+  isBanking: boolean;
 
   isAccount:boolean = false;
 
-  trx: TrxEntity = new TrxEntity();
-  message: string = '';
+  // trx: TrxEntity = new TrxEntity();
+  // message: string = '';
 
-  accounts: Account[] = [];
+  // accounts: Account[] = [];
 
-  // process
-  transferForm: FormGroup;
-  submitted: boolean = false;
+  // // process
+  // transferForm: FormGroup;
+  // submitted: boolean = false;
 
   constructor(
-    private service: TransactionService,
-    private fb: FormBuilder
+    // private service: TransactionService,
+    // private fb: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.accountNumber();
-    this.transferForm = this.fb.group({
-      cashTag: [''],
-      destinationNumber: [''],
-      accountNumber: [''],
-      amount: ['', Validators.required]
-    });
+    // this.accountNumber();
+    // this.transferForm = this.fb.group({
+    //   cashTag: [''],
+    //   destinationNumber: [''],
+    //   accountNumber: [''],
+    //   amount: ['', Validators.required]
+    // });
   }
 
-  transfer(){
-    this.submitted = true;
+  emmit(){
+    this.transferEmiter.emit();
+  }
 
-      this.trx.acnCredit = this.f.destinationNumber.value;
-      this.trx.acnDebet = this.f.accountNumber.value;
-      this.trx.trxCode = "T0003";
-      this.trx.amount = this.f.amount.value;    
+  // transfer(){
+  //   this.submitted = true;
+
+  //     this.trx.acnCredit = this.f.destinationNumber.value;
+  //     this.trx.acnDebet = this.f.accountNumber.value;
+  //     this.trx.trxCode = "T0003";
+  //     this.trx.amount = this.f.amount.value;    
       
-    alert(JSON.stringify(this.transferForm.value));
-      // this.transferByAccount(this.trx);
-  }
+  //   alert(JSON.stringify(this.transferForm.value));
+  //     // this.transferByAccount(this.trx);
+  // }
 
-  transferByAccount(trx: TrxEntity){
-    this.service.transfer(trx).subscribe(
-      resp => {
-        if (resp.status !== "20") {
-          this.message = "Transfer failed";
+  // transferByAccount(trx: TrxEntity){
+  //   this.service.transfer(trx).subscribe(
+  //     resp => {
+  //       if (resp.status !== "20") {
+  //         this.message = "Transfer failed";
 
-          this.hideForm();
-        } else {
-          this.message = "Transfer success";
+  //         this.emmit();
+  //       } else {
+  //         this.message = "Transfer success";
 
-          this.hideForm();
-        }
-      }
-    );
-  }
+  //         this.emmit();
+  //       }
+  //     }
+  //   );
+  // }
 
-  public get f() {
-    return this.transferForm.controls;
-  }
+  // public get f() {
+  //   return this.transferForm.controls;
+  // }
 
-  accountNumber(){
-    this.service.getWalletAccount().subscribe(
-      resp => {
-        if (resp.status !== "20") {
-          this.message = resp.message;
-        } else {
-          resp.data.forEach(d => {
-            this.accounts.push(d.account);
-          });  
-        }
-      }
-    );
-  }
+  // accountNumber(){
+  //   this.service.getWalletAccount().subscribe(
+  //     resp => {
+  //       if (resp.status !== "20") {
+  //         this.message = resp.message;
+  //       } else {
+  //         resp.data.forEach(d => {
+  //           this.accounts.push(d.account);
+  //         });  
+  //       }
+  //     }
+  //   );
+  // }
 
-  toAccount(){
-    this.isAccount = !this.isAccount;
-  }
+  // toAccount(){
+  //   this.isAccount = !this.isAccount;
+  // }
 
-  hideForm(){
-    setTimeout(() => {
-      this.transferPage = !this.transferPage;
-      this.transferEmiter.emit(this.transferPage);
-    }, 5000)
-  }
+  
 
 }

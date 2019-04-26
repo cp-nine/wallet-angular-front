@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TrxEntity } from 'src/app/models/trx-entity';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TransactionService } from 'src/app/services/transaction/transaction.service';
@@ -20,6 +20,9 @@ export class TopupByaccountComponent implements OnInit {
   // process
   topUpForm: FormGroup;
   submitted: boolean = false;
+
+  @Output()
+  emmiter = new EventEmitter();
 
   constructor(
     private service: TransactionService,
@@ -55,11 +58,19 @@ export class TopupByaccountComponent implements OnInit {
       resp => {
         if (resp.status !== "20") {
           this.message = "Top up failed";
+          this.emmit();
         } else {
           this.message = "Top up success";
+          this.emmit();
         }
       }
     );
+  }
+
+  emmit(){
+    setTimeout(() => {
+      this.emmiter.emit();
+    }, 2000);
   }
 
   public get f() {

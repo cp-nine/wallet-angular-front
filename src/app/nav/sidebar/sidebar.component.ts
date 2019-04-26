@@ -4,6 +4,7 @@ import { Wallet } from 'src/app/models/wallet';
 import { WalletService } from 'src/app/services/wallet/wallet.service';
 import { MENUDUA } from 'src/app/models/menu-dua';
 import { MENUSATU } from 'src/app/models/menu-satu';
+import { TransactionService } from 'src/app/services/transaction/transaction.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,36 +20,62 @@ export class SidebarComponent implements OnInit {
 
   message: string;
 
+  totalBallance: number = 0;
+
   mainMenu;
 
   constructor(
-    private service: WalletService
+    private service: WalletService,
+    private service2: TransactionService
   ) { }
 
-  getProfile(){
-    this.service.getProfile().subscribe(
-      response => {
-        if (response.status !== "20") {
-          this.message = response.message;
-        } else {
-          this.wallet = response.data; 
+  async getProfile(){
+    let response = await this.service.getProfile().toPromise();
+    if (response.status !== "20") {
+      this.message = response.message;
+    } else {
+      this.wallet = response.data; 
 
-          if (response.data.type === "E-Merchant") {
-            this.mainMenu = MENUDUA;
-          } else {
-            this.mainMenu = MENUSATU;
-          }
-        }
+      if (response.data.type === "E-Merchant") {
+        this.mainMenu = MENUDUA;
+      } else {
+        this.mainMenu = MENUSATU;
       }
-    );
+    }
   }
 
   get actibeBallance(){
     return this.wallet.activeBallance;
   }
 
+  refresh(){
+    this.service.refresh.subscribe(
+      () => {
+        this.getProfile();
+      }
+    );
+  }
+
+  accountNumber(){
+    this.service2.getWalletAccount().subscribe(
+      resp => {
+        if (resp.status !== "20") {
+          this.message = resp.message;
+        } else {
+          resp.data.forEach(wa => {
+            this.totalBallance = this.totalBallance + wa.account.ballance;
+          });
+        }
+      }
+    );
+  }
+
   ngOnInit() {
+
+    this.refresh();
+
     this.getProfile();
+    this.accountNumber();
     // --- togle sidebar -------
     $('#btn-toggler').on('click', function () {
       if($(this).hasClass('btnhide')){

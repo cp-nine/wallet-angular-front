@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TransactionService } from 'src/app/services/transaction/transaction.service';
 import { TrxEntity } from 'src/app/models/trx-entity';
 import { Account } from 'src/app/models/account';
@@ -20,6 +20,12 @@ export class TopupComponent implements OnInit {
   // process
   topUpForm: FormGroup;
   submitted: boolean = false;
+
+  @Input()
+  isBanking: boolean;
+
+  @Output()
+  topupEmmiter = new EventEmitter();
 
   constructor(
     private service: TransactionService,
@@ -78,6 +84,10 @@ export class TopupComponent implements OnInit {
         }
       }
     );
+  }
+
+  passEmmit(){
+    this.topupEmmiter.emit();
   }
 
 }

@@ -11,7 +11,8 @@
           {{wallet.fullName}}
           <p class="cash-tag">$ {{wallet.cashTag}}</p>
           </a>
-         <p style="margin-bottom:5px;" *ngIf="wallet.activeBallance">{{wallet.activeBallance | currency:'Rp. '}}</p>
+         <p style="margin-bottom:5px;" *ngIf="wallet.type!=='E-Banking'">{{wallet.activeBallance | currency:'Rp. '}}</p>
+         <p style="margin-bottom:5px;" *ngIf="wallet.type==='E-Banking'">{{totalBallance | currency:'Rp. '}}</p>
       </li>
        <li class="nav-item" routerLinkActive="active" 
           *ngFor="let menu of mainMenu">

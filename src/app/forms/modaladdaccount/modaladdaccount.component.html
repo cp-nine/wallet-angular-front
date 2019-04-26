@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="acnModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -8,15 +8,21 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <input type="text" class="form-control" id="account" placeholder="Account Number">
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save</button>
-        </div>
+        <form [formGroup]="acnForm">
+          <div class="modal-body">
+              <div class="alert alert-info" *ngIf="message !== ''">
+                  <p style="margin-bottom:0;">{{message}}</p>
+              </div>
+
+              <div class="form-group">
+                  <input type="number" formControlName="accountNumber" class="form-control" id="account" placeholder="Account Number" [ngClass]="{ 'is-invalid': submitted && f.accountNumber.errors }">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button (click)="onSubmit()" type="button" data-dismiss="modal" class="btn btn-primary">Save</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

@@ -6,7 +6,7 @@
       <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
         aria-selected="true">From Wallet</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="!isBanking">
       <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
         aria-selected="false">From Account</a>
     </li>
@@ -14,11 +14,12 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <br>
-      <app-main-cash></app-main-cash>
+      <app-main-cash (emmiter)="emmit($event)" *ngIf="!isBanking"></app-main-cash>
+      <app-cash-account (emmiter)="emmit($event)" *ngIf="isBanking"></app-cash-account>
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
       <br>
-      <app-cash-account></app-cash-account>
+      <app-cash-account (emmiter)="emmit($event)"></app-cash-account>
     </div>
   </div>
 

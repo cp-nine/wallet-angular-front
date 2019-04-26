@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TransactionService } from 'src/app/services/transaction/transaction.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TrxEntity } from 'src/app/models/trx-entity';
@@ -15,67 +15,76 @@ export class WithdrawalComponent implements OnInit {
   message: string = '';
 
   accounts: Account[] = [];
+  @Input()
+  isBanking: boolean;
+
+  @Output()
+  emmiter = new EventEmitter();
 
   // process
   withdrawalForm: FormGroup;
   submitted: boolean = false;
 
   constructor(
-    private service: TransactionService,
-    private fb: FormBuilder
+    // private service: TransactionService,
+    // private fb: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.accountNumber();
-    this.withdrawalForm = this.fb.group({
-      accountNumber: [''],
-      amount: ['', Validators.required]
-    });
+    // this.accountNumber();
+    // this.withdrawalForm = this.fb.group({
+    //   accountNumber: [''],
+    //   amount: ['', Validators.required]
+    // });
   }
 
-  public get f() {
-    return this.withdrawalForm.controls;
+  emmit(){
+    this.emmiter.emit();
   }
 
-  accountNumber(){
-    this.service.getWalletAccount().subscribe(
-      resp => {
-        if (resp.status !== "20") {
-          this.message = resp.message;
-        } else {
-          resp.data.forEach(d => {
-            this.accounts.push(d.account);
-          });  
-        }
-      }
-    );
-  }
+  // public get f() {
+  //   return this.withdrawalForm.controls;
+  // }
 
-  withdrawal(){
-    this.submitted = true;
+  // accountNumber(){
+  //   this.service.getWalletAccount().subscribe(
+  //     resp => {
+  //       if (resp.status !== "20") {
+  //         this.message = resp.message;
+  //       } else {
+  //         resp.data.forEach(d => {
+  //           this.accounts.push(d.account);
+  //         });  
+  //       }
+  //     }
+  //   );
+  // }
+
+  // withdrawal(){
+  //   this.submitted = true;
 
 
-    if (this.f.amount.value < 50000) {
-      this.message = "Cash minimum Rp.50,000.00";
-    } else {
-      this.trx.acnDebet = this.f.accountNumber.value;
-      this.trx.trxCode = "T0004";
-      this.trx.amount = this.f.amount.value;  
+  //   if (this.f.amount.value < 50000) {
+  //     this.message = "Cash minimum Rp.50,000.00";
+  //   } else {
+  //     this.trx.acnDebet = this.f.accountNumber.value;
+  //     this.trx.trxCode = "T0004";
+  //     this.trx.amount = this.f.amount.value;  
 
-      this.withdrawalProcess(this.trx);
-    }
-  }
+  //     this.withdrawalProcess(this.trx);
+  //   }
+  // }
 
-  withdrawalProcess(trx){
-    this.service.cash(trx).subscribe(
-      resp => {
-        if (resp.status !== "20") {
-          this.message = "Cash withdrawal failed";
-        } else {
-          this.message = "Cash withdrawal success";
-        }
-      }
-    );
-  }
+  // withdrawalProcess(trx){
+  //   this.service.cash(trx).subscribe(
+  //     resp => {
+  //       if (resp.status !== "20") {
+  //         this.message = "Cash withdrawal failed";
+  //       } else {
+  //         this.message = "Cash withdrawal success";
+  //       }
+  //     }
+  //   );
+  // }
 
 }

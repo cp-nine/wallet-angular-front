@@ -11,8 +11,16 @@ export class AppComponent {
   arrUrl = []; 
   currentUrl: string; 
 
+  isLogin: boolean = false;
+
   constructor(){
     this.arrUrl = location.href.split('/');
     this.currentUrl = this.arrUrl[3];
+  }
+
+  ngOnInit(){
+    if(localStorage.getItem("user") !== null){
+      this.isLogin = true;
+    }
   }
 }

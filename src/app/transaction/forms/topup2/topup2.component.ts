@@ -1,16 +1,16 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Account } from 'src/app/models/account';
 import { TrxEntity } from 'src/app/models/trx-entity';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TransactionService } from 'src/app/services/transaction/transaction.service';
 import { Router } from '@angular/router';
+import { Account } from 'src/app/models/account';
 
 @Component({
-  selector: 'app-maintopup',
-  templateUrl: './maintopup.component.html',
-  styleUrls: ['./maintopup.component.css']
+  selector: 'app-topup2',
+  templateUrl: './topup2.component.html',
+  styleUrls: ['./topup2.component.css']
 })
-export class MaintopupComponent implements OnInit {
+export class Topup2Component implements OnInit {
 
   trx: TrxEntity = new TrxEntity();
   message: string = '';
@@ -55,7 +55,7 @@ export class MaintopupComponent implements OnInit {
   }
 
   topUpByAccount(trx: TrxEntity){
-    this.service.topUp(trx).subscribe(
+    this.service.topUpAccount(trx).subscribe(
       resp => {
         if (resp.status !== "20") {
           this.message = "Top up failed";
@@ -91,6 +91,5 @@ export class MaintopupComponent implements OnInit {
       }
     );
   }
-
 
 }

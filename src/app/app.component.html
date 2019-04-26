@@ -1,6 +1,6 @@
-<app-navbar *ngIf="currentUrl !== 'login'"></app-navbar>
+<app-navbar *ngIf="isLogin"></app-navbar>
 
-<section class="body" *ngIf="currentUrl !== 'login'">
+<section class="body" *ngIf="isLogin">
     <app-sidebar></app-sidebar>
 
   <!-- content -->

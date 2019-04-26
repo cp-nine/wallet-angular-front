@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {   
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      cashTag: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -40,9 +40,7 @@ export class LoginComponent implements OnInit {
 
     // check validation form
     if (this.loginForm.invalid) {
-
       return;
-
     }
 
     // call login auth service to hit api login
@@ -56,7 +54,6 @@ export class LoginComponent implements OnInit {
         }
       }
     );
-
     
   }
 

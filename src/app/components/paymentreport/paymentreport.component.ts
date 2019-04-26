@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-// import * as $ from 'jquery';
+import * as $ from 'jquery';
+import 'datatables.net-bs4';
 import { TransactionService } from 'src/app/services/transaction/transaction.service';
 import { Vtrx } from 'src/app/models/v-trx';
 
@@ -19,7 +20,13 @@ export class PaymentreportComponent implements OnInit {
   constructor(private service: TransactionService) { }
 
   ngOnInit() {
-    // $('#tb-payment').DataTable();
+
+    setTimeout(() => {
+      $(function(){
+        $('#tb-payment').DataTable();
+      });
+    }, 1500);
+
     this.accountNumber();
   }
 

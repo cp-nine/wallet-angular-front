@@ -13,7 +13,7 @@ export class PaymentComponent implements OnInit {
   // paymentPage:boolean=false;
 
   @Output()
-  transferEmiter = new EventEmitter();
+  emmiter = new EventEmitter();
 
   isAccount:boolean = false;
 
@@ -54,12 +54,14 @@ export class PaymentComponent implements OnInit {
   }
 
   transferByAccount(trx: TrxEntity){
-    this.service.transferWtw(trx, this.cashTag).subscribe(
+    this.service.payment(trx, this.cashTag).subscribe(
       resp => {
         if (resp.status !== "20") {
-          this.message = "Failed";
+          this.message = resp.message;
+          this.emmit();
         } else {
           this.message = "Success";
+          this.emmit();
         }
       }
     );
@@ -85,6 +87,12 @@ export class PaymentComponent implements OnInit {
 
   toAccount(){
     this.isAccount = !this.isAccount;
+  }
+
+  emmit(){
+    setTimeout(() => {
+      this.emmiter.emit();
+    }, 1000);
   }
 
 }

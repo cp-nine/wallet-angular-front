@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Wallet } from 'src/app/models/wallet';
 import { WalletService } from 'src/app/services/wallet/wallet.service';
 import { TransactionService } from 'src/app/services/transaction/transaction.service';
 import { Account } from 'src/app/models/account';
-import { Wallet } from 'src/app/models/wallet';
 
 @Component({
-  selector: 'app-wallettransaction',
-  templateUrl: './wallettransaction.component.html',
-  styleUrls: ['./wallettransaction.component.css']
+  selector: 'app-wallettransaction2',
+  templateUrl: './wallettransaction2.component.html',
+  styleUrls: ['./wallettransaction2.component.css']
 })
-export class WallettransactionComponent implements OnInit {
+export class Wallettransaction2Component implements OnInit {
 
   topupPage:boolean=false;
   transferPage:boolean=false;
@@ -29,15 +29,8 @@ export class WallettransactionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.refresh();
     this.accountNumber();
     this.getActiveBallance();
-  }
-
-  refresh(){
-    this.service.refresh.subscribe(() => {
-        this.getActiveBallance();
-    });
   }
 
   getActiveBallance(){
@@ -108,15 +101,5 @@ export class WallettransactionComponent implements OnInit {
     this.transferPage = !this.transferPage;
   }
 
-  reset(){
-    this.paymentPage = false;
-    this.withdrawalPage = false;
-    this.transferPage = false;
-    this.topupPage = false;
-    this.accounts = [];
-    this.totalBallance = 0;
-    this.accountNumber();
-    this.getActiveBallance();
-  }
 
 }

@@ -8,6 +8,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PaymentreportComponent } from './components/paymentreport/paymentreport.component';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { WalletGuard } from './guards/wallet/wallet.guard';
+import { UpdatePasswordComponent } from './components/forms/update-password/update-password.component';
 
 const routes: Routes = [
   {path:'', redirectTo: '/login', pathMatch: 'full'},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:'transaction', loadChildren:'./transaction/transaction.module#TransactionModule', canActivate: [WalletGuard]},
   {path:'activity', component: TransactionsreportComponent, canActivate: [WalletGuard]},
   {path:'payment-report', component: PaymentreportComponent, canActivate: [WalletGuard]},
+  {path:'update-password', component:UpdatePasswordComponent},
   {path:'**', component: PagenotfoundComponent}
 ];
 

@@ -1,6 +1,6 @@
 export class WalletLogin {
 
-    email: string;
+    cashTag: string;
     password: string;
 
     constructor() {

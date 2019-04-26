@@ -58,8 +58,10 @@ export class TransferWtaComponent implements OnInit {
       resp => {
         if (resp.status !== "20") {
           this.message = "Transfer failed";
+          this.emmit();
         } else {
           this.message = "Transfer success";
+          this.emmit();
         }
       }
     );
@@ -85,6 +87,12 @@ export class TransferWtaComponent implements OnInit {
 
   toAccount(){
     this.isAccount = !this.isAccount;
+  }
+
+  emmit(){
+    setTimeout(() => {
+      this.transferEmiter.emit();
+    }, 1000);
   }
 
 }

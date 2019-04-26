@@ -8,7 +8,8 @@
           <div class="card-body">
             <div class="card-right">
               <h5><b>Active Ballance</b></h5>
-              <h4><b>{{wallet.activeBallance | currency:'Rp. '}}</b></h4>
+              <h4 *ngIf="wallet.type!=='E-Banking'"><b>{{wallet.activeBallance | currency:'Rp. '}}</b></h4>
+              <h4 *ngIf="wallet.type==='E-Banking'"><b>{{totalBallance | currency:'Rp. '}}</b></h4>
             </div>
           </div>
         </div>
