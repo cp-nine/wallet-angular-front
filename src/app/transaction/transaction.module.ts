@@ -18,9 +18,11 @@ import { MainCashComponent } from './forms/main-cash/main-cash.component';
 import { CashAccountComponent } from './forms/cash-account/cash-account.component';
 import { Wallettransaction2Component } from './wallettransaction2/wallettransaction2.component';
 import { Topup2Component } from './forms/topup2/topup2.component';
+import { Transfer2Component } from './forms/transfer2/transfer2.component';
+import { Cash2Component } from './forms/cash2/cash2.component';
 
 @NgModule({
-  declarations: [WallettransactionComponent, TopupComponent, TransferComponent, WithdrawalComponent, PaymentComponent, MaintopupComponent, TopupByaccountComponent, MainTransferComponent, TransferWtwComponent, TransferWtaComponent, MainCashComponent, CashAccountComponent, Wallettransaction2Component, Topup2Component],
+  declarations: [WallettransactionComponent, TopupComponent, TransferComponent, WithdrawalComponent, PaymentComponent, MaintopupComponent, TopupByaccountComponent, MainTransferComponent, TransferWtwComponent, TransferWtaComponent, MainCashComponent, CashAccountComponent, Wallettransaction2Component, Topup2Component, Transfer2Component, Cash2Component],
   imports: [
     CommonModule,
     TransactionRoutingModule,

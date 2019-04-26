@@ -15,7 +15,7 @@
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <br>
       <app-main-cash (emmiter)="emmit($event)" *ngIf="!isBanking"></app-main-cash>
-      <app-cash-account (emmiter)="emmit($event)" *ngIf="isBanking"></app-cash-account>
+      <app-cash2 (emmiter)="emmit($event)" *ngIf="isBanking"></app-cash2>
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
       <br>
