@@ -21,7 +21,7 @@
 
   <div class="col-sm-9">
     <div class="card">
-      <div class="card-body" *ngIf="!isEdit">
+      <div class="card-body">
         <h5>Wallet Profile &nbsp;
           <!-- <span>
             <a href="javascript:void(0)" (click)="editPage()" data-toggle="tooltip" data-placement="right"
@@ -36,7 +36,9 @@
               <th scope="row" width="150px">Wallet Name</th>
               <td>
                 {{wallet.walletName}} &nbsp;
-               <a href="javascript:void(0)"><i class="fas fa-pencil-alt"></i></a>
+               <a href="javascript:void(0)" (click)="editPage()"><i class="fas fa-pencil-alt"></i></a>
+                <br>
+               <app-edit-wallet-name *ngIf="isEdit" (emmiter)="editPage($event)"></app-edit-wallet-name>
               </td>
             </tr>
             <tr>
@@ -49,7 +51,8 @@
             </tr>
             <tr>
               <th scope="row">Active Ballance</th>
-              <td>{{wallet.activeBallance | currency:'Rp. '}}</td>
+              <td *ngIf="wallet.type!=='E-Banking'">{{wallet.activeBallance | currency:'Rp. '}}</td>
+              <td *ngIf="wallet.type==='E-Banking'">{{totalBallance | currency:'Rp. '}}</td>
             </tr>
             <tr>
               <th scope="row">Accounts</th>
@@ -85,7 +88,7 @@
       </div>
 
       <!-- edit -->
-      <app-editcustprofile (emiterEdit)="editPage($event)" *ngIf="isEdit"></app-editcustprofile>
+      <!-- <app-editcustprofile (emiterEdit)="editPage($event)" *ngIf="isEdit"></app-editcustprofile> -->
     </div>
   </div>
 </div>

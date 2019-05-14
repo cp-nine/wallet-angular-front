@@ -1,0 +1,5 @@
+<form [formGroup]="editWalletForm" (ngSubmit)="onSubmit()">
+  <input type="text" class="form-control" formControlName="walletName" placeholder="WalletName">
+  <br>
+  <input type="submit" class="btn btn-primary" value="Save" [disabled]="editWalletForm.invalid">
+</form>

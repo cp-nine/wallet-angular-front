@@ -15,8 +15,8 @@ export class TransactionService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl = "http://localhost:8080/api-v1/trx";
-  baseUrl2 = "http://localhost:8080/api-v1/wallet";
+  baseUrl = "http://localhost:3000/api-v1/trx";
+  baseUrl2 = "http://localhost:3000/api-v1/wallet";
 
   WID = localStorage.getItem("user");
 
@@ -35,52 +35,53 @@ export class TransactionService {
     return this.http.get<CommonResponse<Vtrx[]>>(`${this.baseUrl}/${cif}`);
   }
 
-  getWalletTransaction(cif: string, accountList: AccountList[]): Observable<CommonResponse<Vtrx[]>>{
-    return this.http.post<CommonResponse<Vtrx[]>>(`${this.baseUrl}/wallet/${cif}`, accountList);
+  getWalletTransaction(cif: string): Observable<CommonResponse<Vtrx[]>>{
+    // return this.http.get<CommonResponse<Vtrx[]>>(`${this.baseUrl}/wallet/${cif}`, accountList);
+    return this.http.get<CommonResponse<Vtrx[]>>(`${this.baseUrl}/wallet/${cif}`);
   }
 
   // main top up
   topUp(trx: TrxEntity): Observable<CommonResponse<TrxEntity>>{
-    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/topup/${this.WID}`, trx);
+    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/topup/${this.WID}`, trx).pipe(tap(() => {return this._refresh.next()}));
   }
 
   // main top up
   topUpAccount(trx: TrxEntity): Observable<CommonResponse<TrxEntity>>{
-    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/topup`, trx);
+    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/topup`, trx).pipe(tap(() => {return this._refresh.next()}));
   }
 
   // top up by account
   topUpByAccount(trx: TrxEntity): Observable<CommonResponse<TrxEntity>>{
-    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/topupbac/${this.WID}`, trx);
+    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/topupbac/${this.WID}`, trx).pipe(tap(() => {return this._refresh.next()}));
   }
 
   // transfer account to account
   transfer(trx: TrxEntity): Observable<CommonResponse<TrxEntity>>{
-    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/transfer`, trx);
+    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/transfer`, trx).pipe(tap(() => {return this._refresh.next()}));
     // return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/cash/${this.WID}`, trx);
   }
 
   // transfer wallet to account
   transferWta(trx: TrxEntity): Observable<CommonResponse<TrxEntity>>{
-    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/trans/walletaccount/${this.WID}`, trx);
+    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/trans/walletaccount/${this.WID}`, trx).pipe(tap(() => {return this._refresh.next()}));
     // return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/cash/${this.WID}`, trx);
   }
 
   // transfer wallet to wallet
   transferWtw(trx: TrxEntity, cashTag: string): Observable<CommonResponse<TrxEntity>>{
-    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/trans/wallet/${this.WID}/${cashTag}`, trx);
+    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/trans/wallet/${this.WID}/${cashTag}`, trx).pipe(tap(() => {return this._refresh.next()}));
     // return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/cash/${this.WID}`, trx);
   }
 
   // transfer wallet to wallet
   payment(trx: TrxEntity, cashTag: string): Observable<CommonResponse<TrxEntity>>{
-    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/payment/wallet/${this.WID}/${cashTag}`, trx);
+    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/payment/wallet/${this.WID}/${cashTag}`, trx).pipe(tap(() => {return this._refresh.next()}));
     // return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/cash/${this.WID}`, trx);
   }
 
   // cash account
   cashAccount(trx: TrxEntity): Observable<CommonResponse<TrxEntity>>{
-    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/cash`, trx);
+    return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/cash`, trx).pipe(tap(() => {return this._refresh.next()}));
     // return this.http.post<CommonResponse<TrxEntity>>(`${this.baseUrl}/cash/${this.WID}`, trx);
   }
 

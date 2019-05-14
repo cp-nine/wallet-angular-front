@@ -86,7 +86,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getTransaction(){
-    this.service2.getWalletTransaction(this.CIF, this.accountList).subscribe(
+    // this.accountList
+    this.service2.getWalletTransaction(this.CIF).subscribe(
       resp => {
         if (resp.status !== "20") {
           this.message = resp.message;

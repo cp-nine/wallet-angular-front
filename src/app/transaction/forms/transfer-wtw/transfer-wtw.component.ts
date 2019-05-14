@@ -37,7 +37,7 @@ export class TransferWtwComponent implements OnInit {
   ngOnInit() {
     this.accountNumber();
     this.wtwForm = this.fb.group({
-      cashTag: [''],
+      cashTag: ['', Validators.required],
       amount: ['', Validators.required]
     });
   }

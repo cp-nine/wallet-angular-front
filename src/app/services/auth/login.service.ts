@@ -12,7 +12,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl = "http://localhost:8080/api-v1/wallet/login";
+  baseUrl = "http://localhost:3000/api-v1/wallet/login";
 
   login(user: WalletLogin): Observable<CommonResponse<Wallet>>{
     return this.http.post<CommonResponse<Wallet>>(`${this.baseUrl}`, user);

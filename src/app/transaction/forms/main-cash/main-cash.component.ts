@@ -31,7 +31,7 @@ export class MainCashComponent implements OnInit {
   ngOnInit() {
     this.accountNumber();
     this.withdrawalForm = this.fb.group({
-      cashTag: [''],
+      cashTag: ['', Validators.required],
       amount: ['', Validators.required]
     });
   }
@@ -57,6 +57,9 @@ export class MainCashComponent implements OnInit {
   withdrawal(){
     this.submitted = true;
 
+    if (this.withdrawalForm.errors) {
+      return;
+    }
 
     if (this.f.amount.value < 50000) {
       this.message = "Cash minimum Rp.50,000.00";

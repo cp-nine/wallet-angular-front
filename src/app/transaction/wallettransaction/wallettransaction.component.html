@@ -8,7 +8,7 @@
               <button (click)="topup()" class="btn btn-primary">Top Up</button>&nbsp;
               <button (click)="transfer()" class="btn btn-primary">Transfer</button>&nbsp;
               <button (click)="withdrawal()" class="btn btn-primary">Withdrawal</button>&nbsp;
-              <button *ngIf="!isEbanking" (click)="payment()" class="btn btn-primary">Payment</button>
+              <button *ngIf="!isEbanking && wallet.type !== 'E-Merchant'" (click)="payment()" class="btn btn-primary">Payment</button>
               <hr>
               <h5 *ngIf="!isEbanking">Active Ballance : {{wallet.activeBallance | currency:'Rp. '}}</h5>
               <h5 *ngIf="isEbanking">Active Ballance : {{totalBallance | currency:'Rp. '}}</h5>

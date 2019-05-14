@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   accounts: Account[] = [];
   totalAccount: number = 0;
   showAccount:boolean = false;
+  totalBallance: number = 0;
 
   @Input()
   isEdit:boolean = false;
@@ -28,8 +29,17 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // this.refresh();
     this.getProfile();
     this.accountNumber();
+  }
+
+  private refresh(){
+    this.service.refresh.subscribe(
+      () => {
+        this.getProfile();
+      }
+    );
   }
 
   getProfile(){
@@ -53,6 +63,7 @@ export class ProfileComponent implements OnInit {
           resp.data.forEach(wa => {
             this.accounts.push(wa.account);
             this.totalAccount = this.accounts.length;
+            this.totalBallance = wa.account.ballance;
           });
         }
       }
@@ -61,6 +72,7 @@ export class ProfileComponent implements OnInit {
 
   editPage(){
     this.isEdit = !this.isEdit;
+    this.getProfile();
   }
 
   lookAccount(){

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as $ from 'jquery';
+import 'datatables.net';
 import 'datatables.net-bs4';
 import { Wallet } from 'src/app/models/wallet';
 import { TransactionService } from 'src/app/services/transaction/transaction.service';
@@ -55,20 +56,26 @@ export class TransactionsreportComponent implements OnInit {
   }
 
   getTransaction(){
-    this.service.getWalletTransaction(this.cif, this.accountList).subscribe(
+    // this.accountList)
+    this.service.getWalletTransaction(this.cif).subscribe(
       resp => {
         if (resp.status !== "20") {
           this.message = resp.message;
         } else {
           resp.data.forEach(t => {
-            if (t.trxCode !== 'Payment' && t.trxCode !== 'Opening New Account') {
+            if (this.wallet.type==='E-Merchant') {
+              if (t.trxCode !== 'Payment' && t.trxCode !== 'Opening New Account') {
+                this.trxList.push(t);
+              }
+            } else {
               this.trxList.push(t);
-            }
+            }            
             this.totalTrx = this.totalTrx + t.amount;
           });
         }
       }
     );
+    
   }
 
 }

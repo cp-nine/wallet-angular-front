@@ -23,7 +23,7 @@
                   <td scope="row">{{list.trxCode}}</td>
                   <td scope="row">{{list.acnDebet===null ? '-':list.acnDebet}} </td>
                   <td scope="row">{{list.acnCredit===null ? '-':list.acnCredit}}</td>
-                  <td scope="row">{{list.trxDate}}</td>
+                  <td scope="row">{{list.trxDate | date:'longDate'}}</td>
                   <td scope="row">{{list.amount | currency:'Rp. '}}</td>
                 </tr>
               </tbody>

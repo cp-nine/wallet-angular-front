@@ -16,7 +16,7 @@ export class AccountService{
 
   constructor(private trxService: TransactionService, private http: HttpClient) { }
 
-  baseUrl = "http://localhost:8080/api-v1";
+  baseUrl = "http://localhost:3000/api-v1";
 
   getAccountsService(){
     this.trxService.getWalletAccount().subscribe(

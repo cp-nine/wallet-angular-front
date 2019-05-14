@@ -17,12 +17,12 @@
         </div>
         <div class="form-group">
           <label for="account">Destination Account Number</label>
-          <input type="text" formControlName="destinationNumber" class="form-control" id="account"
+          <input type="number" formControlName="destinationNumber" class="form-control" id="account"
             placeholder="Account Number" [ngClass]="{ 'is-invalid': submitted && f.destinationNumber.errors }">
         </div>
         <div class="form-group">
           <label for="amount">Transfer Nominal</label>
-          <input type="text" formControlName="amount" class="form-control" id="amout" 
+          <input type="number" formControlName="amount" class="form-control" id="amout" 
           placeholder="Nominal" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }">
         </div>
         <div class="form-group">

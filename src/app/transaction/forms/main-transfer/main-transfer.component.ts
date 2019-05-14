@@ -35,9 +35,8 @@ export class MainTransferComponent implements OnInit {
   ngOnInit() {
     this.accountNumber();
     this.mtForm = this.fb.group({
-      cashTag: [''],
-      destinationNumber: [''],
-      accountNumber: [''],
+      destinationNumber: ['', Validators.required],
+      accountNumber: ['', Validators.required],
       amount: ['', Validators.required]
     });
   }
@@ -45,12 +44,17 @@ export class MainTransferComponent implements OnInit {
   transfer(){
     this.submitted = true;
 
+    if(this.f.destinationNumber.value === this.f.accountNumber.value){
+      this.message = "Cannot Transfer to your self";
+    } else {
       this.trx.acnCredit = this.f.destinationNumber.value;
       this.trx.acnDebet = this.f.accountNumber.value;
       this.trx.trxCode = "T0004";
       this.trx.amount = this.f.amount.value;    
       
       this.transferByAccount(this.trx);
+    }
+      
   }
 
   transferByAccount(trx: TrxEntity){

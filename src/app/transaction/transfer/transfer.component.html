@@ -6,13 +6,13 @@
     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
       aria-selected="true">Transfer</a>
   </li>
-  <li class="nav-item" *ngIf="!isBanking">
+  <!-- <li class="nav-item" *ngIf="!isBanking">
     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
       aria-selected="false">To Other Account</a>
-  </li>
+  </li> -->
   <li class="nav-item" *ngIf="!isBanking">
     <a class="nav-link" id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile"
-      aria-selected="false">From Account</a>
+      aria-selected="false">From Account to Account</a>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
@@ -21,10 +21,10 @@
     <app-transfer-wtw (transferEmiter)="emmit($event)" *ngIf="!isBanking"></app-transfer-wtw>
     <app-transfer2 (transferEmiter)="emmit($event)" *ngIf="isBanking"></app-transfer2>
   </div>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+  <!-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
     <br>
     <app-transfer-wta (transferEmiter)="emmit($event)"></app-transfer-wta>
-  </div>
+  </div> -->
   <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile2-tab">
     <br>
     <app-main-transfer (transferEmiter)="emmit($event)"></app-main-transfer>

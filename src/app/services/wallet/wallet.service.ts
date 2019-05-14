@@ -12,7 +12,7 @@ export class WalletService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl = "http://localhost:8080/api-v1/wallet";
+  baseUrl = "http://localhost:3000/api-v1/wallet";
 
   user = localStorage.getItem("user");
 
@@ -23,13 +23,15 @@ export class WalletService {
   } 
 
   getProfile(): Observable<CommonResponse<Wallet>>{
-    return this.http.get<CommonResponse<Wallet>>(`${this.baseUrl}/${this.user}`).pipe(
-      tap(() => {this._refresh.next();})
-    );
+    return this.http.get<CommonResponse<Wallet>>(`${this.baseUrl}/${this.user}`);
   }
 
   updatePassword(data): Observable<CommonResponse<Wallet>>{
     return this.http.put<CommonResponse<Wallet>>(`${this.baseUrl}/update-password`, data);
+  }
+
+  updateWalletName(data): Observable<CommonResponse<Wallet>>{
+    return this.http.put<CommonResponse<Wallet>>(`${this.baseUrl}/update-wallet-name`, data);
   }
   
 }

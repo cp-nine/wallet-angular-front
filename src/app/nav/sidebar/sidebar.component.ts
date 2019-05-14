@@ -56,6 +56,14 @@ export class SidebarComponent implements OnInit {
     );
   }
 
+  refresh2(){
+    this.service2.refresh.subscribe(
+      () => {
+        this.accountNumber();
+      }
+    );
+  }
+
   accountNumber(){
     this.service2.getWalletAccount().subscribe(
       resp => {
@@ -73,9 +81,10 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
 
     this.refresh();
+    this.refresh2();
 
-    this.getProfile();
-    this.accountNumber();
+    // this.getProfile();
+    // this.accountNumber();
     // --- togle sidebar -------
     $('#btn-toggler').on('click', function () {
       if($(this).hasClass('btnhide')){
@@ -95,5 +104,9 @@ export class SidebarComponent implements OnInit {
       }
   });
   }
+
+  // ngDoCheck(){
+  //   this.refresh2();
+  // }
 
 }

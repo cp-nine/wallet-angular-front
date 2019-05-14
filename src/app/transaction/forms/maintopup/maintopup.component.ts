@@ -57,6 +57,7 @@ export class MaintopupComponent implements OnInit {
   topUpByAccount(trx: TrxEntity){
     this.service.topUp(trx).subscribe(
       resp => {
+        console.log(resp);
         if (resp.status !== "20") {
           this.message = "Top up failed";
           this.emmit();

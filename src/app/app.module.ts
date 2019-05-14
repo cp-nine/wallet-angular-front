@@ -18,6 +18,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PaymentreportComponent } from './components/paymentreport/paymentreport.component';
 import { ModaladdaccountComponent } from './forms/modaladdaccount/modaladdaccount.component';
 import { UpdatePasswordComponent } from './components/forms/update-password/update-password.component';
+import { EditWalletNameComponent } from './components/edit-wallet-name/edit-wallet-name.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UpdatePasswordComponent } from './components/forms/update-password/upda
     DashboardComponent,
     PaymentreportComponent,
     ModaladdaccountComponent,
-    UpdatePasswordComponent
+    UpdatePasswordComponent,
+    EditWalletNameComponent
   ],
   imports: [
     BrowserModule,

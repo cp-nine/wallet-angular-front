@@ -35,7 +35,7 @@ export class Transfer2Component implements OnInit {
     this.accountNumber();
     this.mtForm = this.fb.group({
       cashTag: [''],
-      destinationNumber: [''],
+      destinationNumber: ['', Validators.required],
       accountNumber: [''],
       amount: ['', Validators.required]
     });
@@ -44,6 +44,10 @@ export class Transfer2Component implements OnInit {
   transfer(){
     this.submitted = true;
 
+    if (this.f.destinationNumber.value === this.account){
+      this.message = "Cannot transfer to your self";
+    } else {
+
       this.trx.acnCredit = this.f.destinationNumber.value;
       this.trx.acnDebet = this.account;
       this.trx.trxCode = "T0004";
@@ -51,13 +55,15 @@ export class Transfer2Component implements OnInit {
       
       // alert(JSON.stringify(this.trx));
       this.transferByAccount(this.trx);
+    }
+
   }
 
   transferByAccount(trx: TrxEntity){
     this.service.transfer(trx).subscribe(
       resp => {
         if (resp.status !== "20") {
-          this.message = "Transfer failed";
+          this.message = resp.message;
           this.emmit();
         } else {
           this.message = "Transfer success";
